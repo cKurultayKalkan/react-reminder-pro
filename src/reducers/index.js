@@ -7,6 +7,12 @@ function reminder(action) {
     }
 }
 
+function removeById(state = [], id) {
+    const reminders = state.filter(reminder => reminder.id !== id);
+    console.log('new reduced reminders', reminders);
+    return reminders;
+}
+
 const reminders = (state = [], action) => {
     let reminders = null;
     switch (action.type) {
@@ -14,9 +20,11 @@ const reminders = (state = [], action) => {
             reminders = [...state, reminder(action)];
             console.log('reminders as state', reminders);
             return reminders;
-         break;
+            break;
         case DELETE_REMINDER:
-
+            reminders = removeById(state, action.id);
+            return reminders;
+            break;
         default:
             return state;
     }
