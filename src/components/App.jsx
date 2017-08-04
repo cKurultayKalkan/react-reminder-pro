@@ -23,9 +23,9 @@ class App extends Component {
         return (
             <ul className="list-group col-sm-4">
                 {
-                    reminders.map((reminder,key) => {
+                    reminders.map((reminder) => {
                         return (
-                            <li key={key}>{reminder.text}</li>
+                            <li key={reminder.id} className="list-group-item">{reminder.text}</li>
                         )
                     })
                 }
@@ -47,16 +47,13 @@ class App extends Component {
                                onChange={event => this.setState({text: event.target.value})}
                         />
                     </div>
-                    <div>
-                        {this.renderReminders()}
-                    </div>
                     <button
                         className="btn btn-success"
                         onClick={() => this.addReminder()}
                     >Add Reminder
                     </button>
                 </div>
-
+                {this.renderReminders()}
             </div>
         );
     }
