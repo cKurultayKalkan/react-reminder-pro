@@ -2,7 +2,7 @@ import {ADD_REMINDER, DELETE_REMINDER} from '../constants'
 
 function reminder(action) {
     let {text, dueDate} = action;
-
+    console.log(text,dueDate);
     return {
         id: Math.random(),
         text,
