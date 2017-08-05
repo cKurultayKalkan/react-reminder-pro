@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../App.css';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {addReminder, deleteReminder} from '../actions';
+import {addReminder, deleteReminder, clearReminders} from '../actions';
 import moment from 'moment';
 
 class App extends Component {
@@ -21,6 +21,10 @@ class App extends Component {
 
     deleteReminder(id) {
         this.props.deleteReminder(id);
+    }
+
+    clearReminders() {
+        this.props.clearReminders();
     }
 
     renderReminders() {
@@ -73,13 +77,20 @@ class App extends Component {
                     </button>
                 </div>
                 {this.renderReminders()}
+                {this.props.reminders.length > 0 ? <div>
+                    <button
+                        className="btn btn-danger"
+                        onClick={() => this.clearReminders()}
+                    >Clear Reminders
+                    </button>
+                </div> : null}
             </div>
         );
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({addReminder, deleteReminder}, dispatch)
+    return bindActionCreators({addReminder, deleteReminder, clearReminders}, dispatch)
 }
 
 function mapStateToProps(state) {
